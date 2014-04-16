@@ -459,7 +459,7 @@ var $1,$2,$3,$6,$7,$5,$4;
 self._width_((640));
 $1=self._height_((360));
 self["@speed"]=(10);
-_st(self["@canvas"])._style_("background-color: black");
+_st(self["@canvas"])._style_("background-color: blue");
 self._addSound_("sounds/applause.ogg");
 $ctx1.sendIdx["addSound:"]=1;
 self._addSound_("sounds/click.ogg");
@@ -473,10 +473,11 @@ $ctx1.sendIdx["atRandom"]=1;
 $5=_st($6)._at_($7);
 $4=_st($5).__at(_st(_st((20)._atRandom()).__minus((10))).__slash((10)));
 _st($3)._direction_($4);
+_st(window)._alert_("Left Player: a - up q - down / Right Player: up/down arrows");
 return self}, function($ctx1) {$ctx1.fill(self,"startGame",{},globals.Pong)})},
 args: [],
-source: "startGame\x0a\x09self width: 640; \x0a\x09\x09height: 360.\x0a\x0a\x09speed := 10.\x0a\x0a\x09canvas style: 'background-color: black'.\x0a\x0a\x09self addSound: 'sounds/applause.ogg'.\x0a\x09self addSound: 'sounds/click.ogg'.\x0a\x0a\x09self createPaddle1;\x0a\x09\x09createPaddle2;\x0a\x09\x09createBall.\x0a\x0a\x09ball direction: (#(-1 1) at: (2 atRandom)) @ ((20 atRandom - 10)/10).",
-messageSends: ["width:", "height:", "style:", "addSound:", "createPaddle1", "createPaddle2", "createBall", "direction:", "@", "at:", "atRandom", "/", "-"],
+source: "startGame\x0a\x09self width: 640; \x0a\x09\x09height: 360.\x0a\x0a\x09speed := 10.\x0a\x0a\x09canvas style: 'background-color: blue'.\x0a\x0a\x09self addSound: 'sounds/applause.ogg'.\x0a\x09self addSound: 'sounds/click.ogg'.\x0a\x0a\x09self createPaddle1;\x0a\x09\x09createPaddle2;\x0a\x09\x09createBall.\x0a\x0a\x09ball direction: (#(-1 1) at: (2 atRandom)) @ ((20 atRandom - 10)/10).\x0a\x09window alert: 'Left Player: a - up q - down / Right Player: up/down arrows'",
+messageSends: ["width:", "height:", "style:", "addSound:", "createPaddle1", "createPaddle2", "createBall", "direction:", "@", "at:", "atRandom", "/", "-", "alert:"],
 referencedClasses: []
 }),
 globals.Pong);
@@ -494,13 +495,13 @@ $1=self["@ai"];
 if(smalltalk.assert($1)){
 self._processAI();
 } else {
-self._whileKeyPressed_do_(_st($Key())._w(),(function(){
+self._whileKeyPressed_do_(_st($Key())._a(),(function(){
 return smalltalk.withContext(function($ctx2) {
 return self._goUp_(self["@paddle1"]);
 $ctx2.sendIdx["goUp:"]=1;
 }, function($ctx2) {$ctx2.fillBlock({},$ctx1,2)})}));
 $ctx1.sendIdx["whileKeyPressed:do:"]=1;
-$2=self._whileKeyPressed_do_(_st($Key())._s(),(function(){
+$2=self._whileKeyPressed_do_(_st($Key())._q(),(function(){
 return smalltalk.withContext(function($ctx2) {
 return self._goDown_(self["@paddle1"]);
 $ctx2.sendIdx["goDown:"]=1;
@@ -520,8 +521,8 @@ return self._goDown_(self["@paddle2"]);
 $3=self._processBallMovement();
 return self}, function($ctx1) {$ctx1.fill(self,"step",{},globals.Pong)})},
 args: [],
-source: "step\x0a\x09ai\x0a\x09\x09ifFalse: [self whileKeyPressed: Key w do: [self goUp: paddle1];\x0a\x09\x09\x09whileKeyPressed: Key s do: [self goDown: paddle1]]\x0a\x09\x09ifTrue: [self processAI].\x0a\x09self whileKeyPressed: Key upArrow do: [self goUp: paddle2];\x0a\x09\x09whileKeyPressed: Key downArrow do: [self goDown: paddle2];\x0a\x09\x09processBallMovement.",
-messageSends: ["ifFalse:ifTrue:", "whileKeyPressed:do:", "w", "goUp:", "s", "goDown:", "processAI", "upArrow", "downArrow", "processBallMovement"],
+source: "step\x0a\x09ai\x0a\x09\x09ifFalse: [self whileKeyPressed: Key a do: [self goUp: paddle1];\x0a\x09\x09\x09whileKeyPressed: Key q do: [self goDown: paddle1]]\x0a\x09\x09ifTrue: [self processAI].\x0a\x09self whileKeyPressed: Key upArrow do: [self goUp: paddle2];\x0a\x09\x09whileKeyPressed: Key downArrow do: [self goDown: paddle2];\x0a\x09\x09processBallMovement.",
+messageSends: ["ifFalse:ifTrue:", "whileKeyPressed:do:", "a", "goUp:", "q", "goDown:", "processAI", "upArrow", "downArrow", "processBallMovement"],
 referencedClasses: ["Key"]
 }),
 globals.Pong);

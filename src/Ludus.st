@@ -186,7 +186,16 @@ drawSpriteCollection: aSpriteCollection
 !Game methodsFor: 'events'!
 
 forElement: anElement ofDataEntry: aDataEntryName getProperty: aPropertyName
-	<return $(anElement).data(aDataEntryName)[aPropertyName];>
+	"^ (anElement asJQuery data: aDataEntryName) at: aPropertyName"
+	<
+	var data;
+	data = $(anElement).data(aDataEntryName);
+	if (data !!= undefined) {
+		return data[aPropertyName];
+	} else {
+		return null;
+	}
+	>
 !
 
 keyDown: evt
@@ -208,7 +217,7 @@ mouseDown: evt
 mouseMove: evt
 	|canvasPosition windowScrollTop windowScrollLeft canvasRelative|
 
-	windowScrollTop := self windowSrollTop.
+	windowScrollTop := self windowScrollTop.
 	windowScrollLeft := self windowScrollLeft.
 	canvasPosition := 'canvas' asJQuery position.
 
@@ -250,7 +259,7 @@ onMouseUpDo: aBlock
 !
 
 whileKeyPressed: aKeyCode do: aBlock
-	( ( keys at: aKeyCode ifAbsent: [ false ] ) and: [ keys at: aKeyCode ] ) ifTrue: aBlock
+	( ( self keys at: aKeyCode ifAbsent: [ false ] ) and: [ self keys at: aKeyCode ] ) ifTrue: aBlock
 !
 
 whileMouseDownDo: aBlock
@@ -270,7 +279,7 @@ fps: anInteger
 initialize
 	super initialize.
 	fps := 30.
-	keys := #().
+	self keys. " and not keys := #()."
 	sounds := #().
 	mouseDown := false.
 	step := 1.

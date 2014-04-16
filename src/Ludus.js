@@ -432,10 +432,18 @@ protocol: 'events',
 fn: function (anElement,aDataEntryName,aPropertyName){
 var self=this;
 return smalltalk.withContext(function($ctx1) { 
-return $(anElement).data(aDataEntryName)[aPropertyName];;
+
+	var data;
+	data = $(anElement).data(aDataEntryName);
+	if (data != undefined) {
+		return data[aPropertyName];
+	} else {
+		return null;
+	}
+	;
 return self}, function($ctx1) {$ctx1.fill(self,"forElement:ofDataEntry:getProperty:",{anElement:anElement,aDataEntryName:aDataEntryName,aPropertyName:aPropertyName},globals.Game)})},
 args: ["anElement", "aDataEntryName", "aPropertyName"],
-source: "forElement: anElement ofDataEntry: aDataEntryName getProperty: aPropertyName\x0a\x09<return $(anElement).data(aDataEntryName)[aPropertyName];>",
+source: "forElement: anElement ofDataEntry: aDataEntryName getProperty: aPropertyName\x0a\x09\x22^ (anElement asJQuery data: aDataEntryName) at: aPropertyName\x22\x0a\x09<\x0a\x09var data;\x0a\x09data = $(anElement).data(aDataEntryName);\x0a\x09if (data != undefined) {\x0a\x09\x09return data[aPropertyName];\x0a\x09} else {\x0a\x09\x09return null;\x0a\x09}\x0a\x09>",
 messageSends: [],
 referencedClasses: []
 }),
@@ -551,14 +559,14 @@ return smalltalk.withContext(function($ctx1) {
 ($ctx1.supercall = true, globals.Game.superclass.fn.prototype._initialize.apply(_st(self), []));
 $ctx1.supercall = false;
 self["@fps"]=(30);
-self["@keys"]=[];
+self._keys();
 self["@sounds"]=[];
 self["@mouseDown"]=false;
 self["@step"]=(1);
 return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},globals.Game)})},
 args: [],
-source: "initialize\x0a\x09super initialize.\x0a\x09fps := 30.\x0a\x09keys := #().\x0a\x09sounds := #().\x0a\x09mouseDown := false.\x0a\x09step := 1.",
-messageSends: ["initialize"],
+source: "initialize\x0a\x09super initialize.\x0a\x09fps := 30.\x0a\x09self keys. \x22 and not keys := #().\x22\x0a\x09sounds := #().\x0a\x09mouseDown := false.\x0a\x09step := 1.",
+messageSends: ["initialize", "keys"],
 referencedClasses: []
 }),
 globals.Game);
@@ -904,18 +912,21 @@ protocol: 'events',
 fn: function (aKeyCode,aBlock){
 var self=this;
 return smalltalk.withContext(function($ctx1) { 
-var $1;
-$1=_st(_st(self["@keys"])._at_ifAbsent_(aKeyCode,(function(){
+var $3,$2,$1;
+$3=self._keys();
+$ctx1.sendIdx["keys"]=1;
+$2=_st($3)._at_ifAbsent_(aKeyCode,(function(){
 return false;
-})))._and_((function(){
+}));
+$1=_st($2)._and_((function(){
 return smalltalk.withContext(function($ctx2) {
-return _st(self["@keys"])._at_(aKeyCode);
+return _st(self._keys())._at_(aKeyCode);
 }, function($ctx2) {$ctx2.fillBlock({},$ctx1,2)})}));
 _st($1)._ifTrue_(aBlock);
 return self}, function($ctx1) {$ctx1.fill(self,"whileKeyPressed:do:",{aKeyCode:aKeyCode,aBlock:aBlock},globals.Game)})},
 args: ["aKeyCode", "aBlock"],
-source: "whileKeyPressed: aKeyCode do: aBlock\x0a\x09( ( keys at: aKeyCode ifAbsent: [ false ] ) and: [ keys at: aKeyCode ] ) ifTrue: aBlock",
-messageSends: ["ifTrue:", "and:", "at:ifAbsent:", "at:"],
+source: "whileKeyPressed: aKeyCode do: aBlock\x0a\x09( ( self keys at: aKeyCode ifAbsent: [ false ] ) and: [ self keys at: aKeyCode ] ) ifTrue: aBlock",
+messageSends: ["ifTrue:", "and:", "at:ifAbsent:", "keys", "at:"],
 referencedClasses: []
 }),
 globals.Game);
