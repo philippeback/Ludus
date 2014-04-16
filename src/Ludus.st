@@ -70,9 +70,11 @@ Widget subclass: #Game
 !Game commentStamp!
 I am a game. You need to override a couple of my methods to make me usable:
 
-#startGame → Here you can define my intial conditions, such as the size of the canvas, my sounds, the background properties, the FPS, etc.
-#step → Here you can define what has to be done at each game cycle, or step. This method should control posititions, collisions, mouse and keyboard events, etc. This method should not deal with any graphic properties, these should be dealt with by:
-#draw → This is the method that controls my view. Here you should define the drawing of sprites and other graphic elements. Don't forget to clear the canvas before re-drawing sprites, if your game requires so.!
+**#startGame** Here you can define my intial conditions, such as the size of the canvas, my sounds, the background properties, the FPS, etc.
+
+**#step**  Here you can define what has to be done at each game cycle, or step. This method should control posititions, collisions, mouse and keyboard events, etc. This method should not deal with any graphic properties, these should be dealt with by:
+
+**#draw** → This is the method that controls my view. Here you should define the drawing of sprites and other graphic elements. Don't forget to clear the canvas before re-drawing sprites, if your game requires so.!
 
 !Game methodsFor: 'attributes'!
 
