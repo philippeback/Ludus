@@ -32,7 +32,7 @@ amber serve
 
 Point your browser to:
 
-(http://localhost:4000/games.html)
+http://localhost:4000/games.html
 
 Enjoy!
 
